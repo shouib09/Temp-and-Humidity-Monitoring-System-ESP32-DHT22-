@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "author": "Shaik Shouib Akthar",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 28.8, "left": -71.96, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -57.3, "left": -187.8, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -70.8,
+      "left": 186.2,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": -109.2,
+      "left": 263,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": -33.6,
+      "left": 258.65,
+      "rotate": 90,
+      "attrs": { "value": "330" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 14.4,
+      "left": 181.85,
+      "rotate": 90,
+      "attrs": { "value": "330" }
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": 246.4,
+      "left": 120.8,
+      "attrs": { "pins": "i2c" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "dht1:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "led1:A", "r2:1", "green", [ "v0" ] ],
+    [ "led2:A", "r1:1", "green", [ "v0" ] ],
+    [ "dht1:SDA", "esp:4", "green", [ "v240", "h211.3", "v-124.8" ] ],
+    [ "esp:GND.2", "led1:C", "black", [ "v0", "h163.2" ] ],
+    [ "esp:17", "r2:2", "green", [ "h0" ] ],
+    [ "esp:22", "lcd1:SCL", "green", [ "h57.6", "v230.4" ] ],
+    [ "esp:21", "lcd1:SDA", "green", [ "h48", "v182.4" ] ],
+    [ "dht1:VCC", "esp:3V3", "red", [ "v19.2", "h86.4", "v-19.2" ] ],
+    [ "esp:3V3", "lcd1:VCC", "green", [ "h0.15", "v-86.4", "h172.8", "v307.2" ] ],
+    [ "esp:GND.3", "led2:C", "black", [ "h0" ] ],
+    [ "esp:GND.3", "lcd1:GND", "black", [ "h86.4", "v163.2" ] ],
+    [ "esp:5", "r1:2", "green", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}
